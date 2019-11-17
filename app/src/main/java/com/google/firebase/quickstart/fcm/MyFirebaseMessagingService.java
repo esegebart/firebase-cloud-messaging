@@ -22,8 +22,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.media.RingtoneManager;
 import android.net.Uri;
-import android.support.v4.app.NotificationCompat;
 import android.util.Log;
+
+import androidx.core.app.NotificationCompat;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
@@ -31,6 +32,13 @@ import com.google.firebase.messaging.RemoteMessage;
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
     private static final String TAG = "MyFirebaseMsgService";
+
+    /*Get FCM InstanceID token*/
+    @Override
+    public void onNewToken(String s) {
+        super.onNewToken(s);
+        Log.e("NEW_TOKEN",s);
+    }
 
     /**
      * Called when message is received.
@@ -40,6 +48,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     // [START receive_message]
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
+        super.onMessageReceived(remoteMessage);
         // [START_EXCLUDE]
         // There are two types of messages data messages and notification messages. Data messages are handled
         // here in onMessageReceived whether the app is in the foreground or background. Data messages are the type
